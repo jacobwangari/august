@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { apiUrl } from '../data/config';
 
 const LoginForm = () => {
-  // State to manage form inputs
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   });
 
+  const endPoint = '/login';
+  const fullUrl = apiUrl + endPoint;
 
   const [error, setError] = useState(null);
   const [token, setToken] = useState(null);
@@ -26,7 +28,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch(fullUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -54,7 +56,7 @@ const LoginForm = () => {
 
   return (
     <section>
-      {Array.from({ length: 200 }).map((_, index) => (
+      {Array.from({ length: 400 }).map((_, index) => (
         <span key={index}></span>
       ))}
       <div className="signin">
