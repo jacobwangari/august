@@ -41,7 +41,7 @@ const LoginForm = () => {
         // Store the token in the state
         setToken(result.token);
         // Redirect user to home page
-        navigate('/');
+        navigate('/home');
       } else {
         console.error('Login Failed:', result.message);
         setError(result.message);

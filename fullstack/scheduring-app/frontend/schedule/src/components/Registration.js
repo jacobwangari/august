@@ -36,7 +36,7 @@ const RegistrationForm = () => {
           </div>
         </div>
       </div>
-    </section>
+   </section>
   );
 };
 

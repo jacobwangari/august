@@ -283,3 +283,73 @@ input[type="submit"]:active
   text-decoration: none;
   color: #0f0;
 }
+
+/* Container for the entire admin home section */
+.home-admin {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 40px;
+  background-color: #222;
+  border-radius: 4px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+}
+
+/* Title styling */
+.home-admin h1 {
+  font-size: 2em;
+  color: #0f0;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.home-admin h2 {
+  font-size: 1.5em;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+/* List of users */
+.home-admin ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Individual user card */
+.home-admin li {
+  background-color: #333;
+  margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Username styling */
+.home-admin li span {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+/* Email styling */
+.home-admin li small {
+  font-size: 1em;
+  color: #aaa;
+}
+
+/* Hover effect for user card */
+.home-admin li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background-color: #0f0;
+  color: #000;
+}
+
+/* Styling for the "No users found" message */
+.home-admin li:last-child {
+  text-align: center;
+  color: #777;
+}

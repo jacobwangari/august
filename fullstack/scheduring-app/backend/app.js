@@ -7,11 +7,9 @@ const app = express();
 const port = process.env.PORT || 5000;
 const cors = require('cors');
 
-
 // Middleware
 app.use(cors()); 
 app.use(express.json());
-
 
 // MongoDB connection URI and database name
 const uri = 'mongodb://localhost:27017';
@@ -47,7 +45,7 @@ const JWT_SECRET = 'tyuyu';
 
 // Register 
 app.post('/register', async (req, res) => {
-  const { username,email, password } = req.body;
+  const { username, email, password } = req.body;
   try {
     const existingUser = await usersCollection.findOne({ username });
     if (existingUser) {
@@ -73,7 +71,7 @@ app.post('/login', async (req, res) => {
     const user = await usersCollection.findOne({ username });
     if (!user) {
       return res.status(400).json({ message: 'Invalid username or password' });
-    }t
+    }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid username or password' });
@@ -81,9 +79,11 @@ app.post('/login', async (req, res) => {
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
+    console.error('Login error:', error); 
     res.status(500).json({ message: 'Server error' });
   }
 });
+
 // Get all users route
 app.get('/users', async (req, res) => {
   try {
