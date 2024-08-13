@@ -84,6 +84,27 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// Handle logout
+const denylistedTokens = new Set(); 
+app.post('/logout', (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+    denylistedTokens.add(token);
+  res.status(200).json({ message: 'Logged out successfully' });
+});
+function verifyToken(req, res, next) {
+  const token = req.headers.authorization.split(' ')[1];
+  if (denylistedTokens.has(token)) {
+    return res.status(401).json({ message: 'Token is invalid' });
+  }
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (error) {
+    res.status(401).json({ message: 'Unauthorized' });
+  }
+}
+
 // Get all users route
 app.get('/users', async (req, res) => {
   try {
@@ -96,5 +117,6 @@ app.get('/users', async (req, res) => {
 
 // Catch-all route handler for all other requests
 app.use((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+  res.status(404).json({ message: 'Endpoint not found' });
 });
+
