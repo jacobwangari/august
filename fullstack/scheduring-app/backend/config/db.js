@@ -32,5 +32,12 @@ async function printUsers() {
   }
 }
 
-module.exports = { connectToDB, printUsers, db, usersCollection };
+const getUsersCollection = () => {
+  if (!usersCollection) {
+      throw new Error('Users collection is not initialized');
+  }
+  return usersCollection;
+};
+
+module.exports = { connectToDB, printUsers, db, usersCollection,getUsersCollection };
 
