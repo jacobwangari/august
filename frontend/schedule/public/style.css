@@ -79,6 +79,7 @@ section .signin
   border-radius: 4px;
   box-shadow: 0 15px 35px rgba(0,0,0,9);
 }
+
 section .signin .content 
 {
   position: relative;
@@ -356,4 +357,33 @@ input[type="submit"]:active
 .home-admin li:last-child {
   text-align: center;
   color: #777;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.workout-section {
+  background-color: #222;
+}
+
+.activity-item {
+  background-color: #333;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.activity-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background-color: #0f0;
+  color: #000;
+}
+
+.text-success {
+  color: #0f0 !important;
+}
+
+.text-primary {
+  color: #0f0 !important;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { apiUrl } from '../data/config.js';
+import { apiUrl } from '../services/config.js';
 
 const RegistrationForm = () => {
 

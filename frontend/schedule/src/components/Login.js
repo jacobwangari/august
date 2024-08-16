@@ -1,38 +1,28 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { apiUrl } from '../data/config';
+import { apiUrl } from '../services/config';
+
 
 const LoginForm = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: ''
-  });
-
-  const endPoint = '/login';
-  const fullUrl = apiUrl + endPoint;
-
+  const [formData, setFormData] = useState({ username: '', password: '' });
   const [error, setError] = useState(null);
-  const [token, setToken] = useState(null);
   const navigate = useNavigate();
+
+  const endPoint = '/auth/login';
+  const fullUrl = apiUrl + endPoint;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await fetch(fullUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
 
@@ -40,8 +30,8 @@ const LoginForm = () => {
 
       if (response.ok) {
         console.log('Login Successful:', result);
-        // Store the token in the state
-        setToken(result.token);
+        // Store the token in localStorage
+        localStorage.setItem('authToken', result.token);
         // Redirect user to home page
         navigate('/home');
       } else {
@@ -53,6 +43,7 @@ const LoginForm = () => {
       setError('An error occurred. Please try again later.');
     }
   };
+  
 
   return (
     <section>
