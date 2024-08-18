@@ -4,14 +4,13 @@ import LoginForm from './components/Login';
 import RegistrationForm from './components/Registration';
 import ForgotPasswordForm from './components/ForgotPassword';
 import Activity from './components/Activity';
-import AddActivityForm from './components/AddActivity';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/home" element={<Activity/>} />
-        <Route path="/add-activity" element={AddActivityForm} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/forgot-password" element={<ForgotPasswordForm />} />
         <Route path="/register" element={<RegistrationForm />} />
