@@ -1,10 +1,33 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const tokenBlacklist = require('../config/tokenBlacklist');
 const jwt = require('jsonwebtoken');
 const { getUsersCollection } = require('../config/db');
+require('dotenv').config();
 
-const JWT_SECRET = "tyutyu";
+const JWT_SECRET = "tyuyu"
+
+
+
+router.post('/logout', (req, res) => {
+    let token = req.headers['authorization'];
+
+    if (!token) {
+        return res.status(400).json({ message: 'No token provided' });
+    }
+
+    if (token.startsWith('Bearer ')) {
+        token = token.slice(7, token.length);
+    }
+
+    if (!tokenBlacklist.includes(token)) {
+        tokenBlacklist.push(token);
+    }
+
+    return res.status(200).json({ message: 'Logged out successfully' });
+});
+
 
 router.post('/register', async (req, res) => {
     const { username, email, password } = req.body;

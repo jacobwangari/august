@@ -1,31 +1,32 @@
-// middleware/auth.js
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = "tyutyu";
+const tokenBlacklist = require('../config/tokenBlacklist');
 
-const verifyToken = (req, res, next) => {
-  // Get the Authorization header
-  const authHeader = req.header('Authorization');
+const JWT_SECRET = "tyuyu"
 
-  // Check if the Authorization header is present
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Access denied, no token provided' });
-  }
+function verifyToken(req, res, next) {
+    let token = req.headers['authorization'];
+    console.log(tokenBlacklist);
+    console.log(token);
 
-  // Check if the token starts with "Bearer "
-  if (!authHeader.startsWith('Bearer ')) {
-    return res.status(400).json({ message: 'Invalid token format' });
-  }
+    if (!token) {
+        return res.status(403).send('A token is required for authentication');
+    }
 
-  // Extract the token from the header
-  const token = authHeader.replace('Bearer ', '');
+    if (token.startsWith('Bearer ')) {
+        token = token.slice(7, token.length);
+    }
 
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded;
-    next(); // Proceed to the next middleware or route handler
-  } catch (error) {
-    res.status(400).json({ message: 'Invalid token' });
-  }
-};
+    if (tokenBlacklist.includes(token)) {
+        return res.status(401).send('Token has been blacklisted');
+    }
+
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        req.user = decoded;
+    } catch (err) {
+        return res.status(401).json({Message: 'Invalid Token'});
+    }
+    return next();
+}
 
 module.exports = { verifyToken };
