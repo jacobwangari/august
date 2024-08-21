@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import LoginForm from './components/Login';
 import RegistrationForm from './components/Registration';
 import ForgotPasswordForm from './components/ForgotPassword';
-import Activity from './components/Activity';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import HomePage from './pages/HomePage';
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/home" element={<Activity/>} />
+        <Route path="/home" element={<HomePage/>} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/forgot-password" element={<ForgotPasswordForm />} />
         <Route path="/register" element={<RegistrationForm />} />

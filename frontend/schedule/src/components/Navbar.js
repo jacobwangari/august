@@ -42,19 +42,26 @@ function Navbar() {
   return (
     <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
       <div className="container-fluid justify-content-between">
-        <a className="navbar-brand text-white" href="#">Navbar</a>
-        <ul className="navbar-nav d-flex flex-row justify-content-around me-1 w-100">
-          <li className="nav-item me-3 me-lg-0">
-            <a className="nav-link text-white" href="#"><i className="fas fa-envelope mx-1"></i> Contact</a>
+        <a className="navbar-brand text-white" href="#">Logo</a>
+        <ul className="navbar-nav  d-flex flex-row justify-content-end ">
+          
+          <li className="nav-item mx-2">
+            <a className="nav-link text-white" href="#"><i className="fas fa-home mx-1"></i> Home</a>
           </li>
-          <li className="nav-item me-3 me-lg-0">
+          <li className="nav-item mx-2">
+            <a className="nav-link text-white" href="#"><i className="fas fa-chart-bar mx-1"></i> Summary</a>
+          </li>
+          <li className="nav-item mx-2">
+            <a className="nav-link text-white" href="#"><i className="fas fa-check-circle mx-1"></i> Review</a>
+          </li>
+          <li className="nav-item mx-2">
+            <a className="nav-link text-white" href="#"><i className="fas fa-calendar mx-1"></i> Calender</a>
+          </li>
+          <li className="nav-item mx-2">
             <a className="nav-link text-white" href="#"><i className="fas fa-cog mx-1"></i> Settings</a>
           </li>
-          <li>
-            <form className="d-flex" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
+          <li className="nav-item mx-2">
+            <a className="nav-link text-white" href="#"><i className="fas fa-envelope mx-1"></i> Contact</a>
           </li>
           <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"

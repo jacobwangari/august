@@ -4,6 +4,34 @@ const { verifyToken } = require('../middleware/auth');
 const { getActivitiesCollection } = require('../config/db');
 const { ObjectId } = require('mongodb'); // Ensure this is correctly required
 
+
+// Get today's activities for a user
+router.get('/activities/today', verifyToken, async (req, res) => {
+  try {
+    const activitiesCollection = getActivitiesCollection();
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Start of the day
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1); // Start of the next day
+
+    const activities = await activitiesCollection.find({
+      userId: new ObjectId(req.user.userId),
+      'activities.startTime': {
+        $gte: today.toISOString(),
+        $lt: tomorrow.toISOString(),
+      }
+    }).toArray();
+
+    if (activities.length === 0) {
+      return res.status(404).json({ message: 'No activities found for today' });
+    }
+
+    res.json(activities);
+  } catch (error) {
+    console.error('Error fetching today\'s activities:', error);
+    res.status(500).json({ message: 'Server error' });
+  }});
+
 // Get all activities for a user
 router.get('/activities', verifyToken, async (req, res) => {
   try {
