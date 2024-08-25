@@ -46,10 +46,8 @@ const LoginForm = () => {
   
 
   return (
-    <section>
-      {Array.from({ length: 400 }).map((_, index) => (
-        <span key={index}></span>
-      ))}
+    <>
+      
       <div className="signin">
         <div className="content">
           <h2>Sign In</h2>
@@ -85,7 +83,7 @@ const LoginForm = () => {
           {error && <p className="error">{error}</p>}
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

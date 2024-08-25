@@ -21,11 +21,11 @@ const AddActivityForm = ({ history }) => {
     e.preventDefault();
     const data = { title, activities };
 
-    // Send POST request
+
     axios.post("YOUR_API_ENDPOINT_HERE", data)
       .then(response => {
         console.log("Activity added successfully", response.data);
-        history.push("/"); // Redirect to the main page or where you want after submission
+        history.push("/"); 
       })
       .catch(error => {
         console.error("There was an error adding the activity!", error);

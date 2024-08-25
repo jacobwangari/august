@@ -5,6 +5,10 @@ import RegistrationForm from './components/Registration';
 import ForgotPasswordForm from './components/ForgotPassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomePage from './pages/HomePage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import $ from 'jquery';
+
 
 const App = () => {
   return (
