@@ -47,44 +47,57 @@ const LoginForm = () => {
 
   return (
     <>
-      
-      <div className="signin">
-        <div className="content">
-          <h2>Sign In</h2>
-          <form className="form" onSubmit={handleSubmit}>
-            <div className="inputBox">
-              <input
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleInputChange}
-                required
-              />
-              <i>Username</i>
-            </div>
-            <div className="inputBox">
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-              />
-              <i>Password</i>
-            </div>
-            <div className="links">
-              <Link to="/forgot-password" className="link-button">Forgot Password</Link>
-              <Link to="/register" className="link-button">Signup</Link>
-            </div>
-            <div className="inputBox">
-              <input type="submit" value="Login" />
-            </div>
-          </form>
-          {error && <p className="error">{error}</p>}
-        </div>
+      <div className="container d-flex justify-content-center align-items-center min-vh-100">
+  <div className="row w-100">
+    <div className="signin card p-4 shadow col-md-6 col-lg-4 mx-auto">
+      <div className="content">
+        <h2 className="text-center mb-4">Sign In</h2>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form-group mb-3">
+            <label htmlFor="username" className="form-label">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              className="form-control"
+              value={formData.username}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="form-control"
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="d-flex justify-content-between mb-4">
+            <Link to="/forgot-password" className="text-decoration-none">Forgot Password?</Link>
+            <Link to="/register" className="text-decoration-none">Signup</Link>
+          </div>
+          <div className="form-group">
+            <input
+              type="submit"
+              value="Login"
+              className="btn btn-primary w-100"
+            />
+          </div>
+        </form>
+        {error && <p className="text-danger text-center mt-3">{error}</p>}
       </div>
+    </div>
+  </div>
+</div>
+
     </>
   );
+  
 };
 
 export default LoginForm;

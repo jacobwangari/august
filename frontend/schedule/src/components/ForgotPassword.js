@@ -3,28 +3,38 @@ import { Link } from 'react-router-dom';
 
 const ForgotPasswordForm = () => {
   return (
-    <section>
-      {Array.from({ length: 200 }).map((_, index) => (
-        <span key={index}></span>
-      ))}
-      <div className="forgotpassword">
-        <div className="content">
-          <h2>Forgot Password</h2>
+    <>
+    <div className="container d-flex justify-content-center align-items-center min-vh-100">
+      <div className="card p-4 shadow w-75" style={{ maxWidth: '500px' }}>
+        <div className="container">
+          <h2 className="text-center mb-4">Forgot Password</h2>
           <div className="form">
-            <div className="inputBox">
-              <input type="email" required />
-              <i>Email</i>
+            <div className="form-group mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                className="form-control" 
+                required 
+              />
             </div>
-            <div className="inputBox">
-              <input type="submit" value="Send Password Reset Link" />
+            <div className="form-group">
+              <input 
+                type="submit" 
+                value="Send Password Reset Link" 
+                className="btn btn-primary w-100" 
+              />
             </div>
-            <div className="links">
-              <Link to="/login" className="link-button">Back to Login</Link>
+            <div className="d-flex justify-content-center mt-4">
+              <Link to="/login" className="text-decoration-none">Back to Login</Link>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </>
+  
   );
 };
 

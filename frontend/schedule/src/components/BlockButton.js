@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { saveActivity } from '../services/activities'; 
+import { formatDate } from '../services/dateFormatter';
 
 const BlockButton = () => {
     const [activityName, setActivityName] = useState('');
@@ -6,11 +8,12 @@ const BlockButton = () => {
     const [activityDate, setActivityDate] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
-  
 
     const handleSaveChanges = async () => {
+        const formattedDate = formatDate(activityDate);
+
         const requestData = {
-            title: "Daily Workout",
+            title: formattedDate,
             activities: [
                 {
                     name: activityName,
@@ -24,28 +27,13 @@ const BlockButton = () => {
         };
 
         try {
-            const response = await fetch('localhost:5000/api/activities', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestData),
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const responseData = await response.json();
+            const responseData = await saveActivity(requestData);
             console.log('Success:', responseData);
-
             // Close the modal or show success message here
         } catch (error) {
-            console.error('Error:', error);
             // Handle error here
         }
     };
-
     return (
         <>
             <button type="button" className="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#activityModal">

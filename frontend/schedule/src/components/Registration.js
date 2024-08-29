@@ -71,66 +71,80 @@ const RegistrationForm = () => {
   };
 
   return (
-    <section>
-      {Array.from({ length: 200 }).map((_, index) => (
-        <span key={index}></span>
-      ))}
-      <div className="signin">
-        <div className="content">
-          <h2>Sign Up</h2>
-          <form className="form" onSubmit={handleSubmit}>
-            <div className="inputBox">
-              <input 
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleInputChange}
-                required 
-              />
-              <i>Username</i>
-            </div>
-            <div className="inputBox">
-              <input 
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                required 
-              />
-              <i>Email</i>
-            </div>
-            <div className="inputBox">
-              <input 
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                required 
-              />
-              <i>Password</i>
-            </div>
-            <div className="inputBox">
-              <input 
-                type="password"
-                name="confirmPassword"
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                required 
-              />
-              <i>Confirm Password</i>
-            </div>
-            <div className="links">
-              <Link to="/login" className="link-button">Already have an account?</Link>
-            </div>
-            <div className="inputBox">
-              <input type="submit" value={loading ? "Registering..." : "Register"} disabled={loading} />
-            </div>
-          </form>
-          {error && <p className="error" style={{ color: 'red' }}>{error}</p>}
-          {success && <p className="success" style={{ color: 'green' }}>{success}</p>}
+    <>
+    <div className="container d-flex justify-content-center align-items-center min-vh-100">
+  <div className="signin card p-4 shadow w-75" style={{ maxWidth: '500px' }}>
+    <div className="content">
+      <h2 className="text-center mb-4">Sign Up</h2>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="form-group mb-3">
+          <label htmlFor="username" className="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            className="form-control"
+            value={formData.username}
+            onChange={handleInputChange}
+            required
+          />
         </div>
-      </div>
-    </section>
+        <div className="form-group mb-3">
+          <label htmlFor="email" className="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            className="form-control"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="form-group mb-3">
+          <label htmlFor="password" className="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            className="form-control"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="form-group mb-3">
+          <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            className="form-control"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+            required
+          />
+        </div>
+        <div className="d-flex justify-content-center mb-4">
+          <Link to="/login" className="text-decoration-none">Already have an account?</Link>
+        </div>
+        <div className="form-group">
+          <input
+            type="submit"
+            value={loading ? "Registering..." : "Register"}
+            className="btn btn-primary w-100"
+            disabled={loading}
+          />
+        </div>
+      </form>
+      {error && <p className="text-danger text-center mt-3">{error}</p>}
+      {success && <p className="text-success text-center mt-3">{success}</p>}
+    </div>
+  </div>
+</div>
+
+    </>
+      
   );
 };
 
